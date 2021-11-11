@@ -91,8 +91,6 @@ public abstract class LifecycleBase implements Lifecycle {
     public void addLifecycleListener(LifecycleListener listener) {
         lifecycleListeners.add(listener);
     }
-
-
     /**
      * {@inheritDoc}
      */
@@ -100,8 +98,6 @@ public abstract class LifecycleBase implements Lifecycle {
     public LifecycleListener[] findLifecycleListeners() {
         return lifecycleListeners.toArray(new LifecycleListener[0]);
     }
-
-
     /**
      * {@inheritDoc}
      */
@@ -109,7 +105,6 @@ public abstract class LifecycleBase implements Lifecycle {
     public void removeLifecycleListener(LifecycleListener listener) {
         lifecycleListeners.remove(listener);
     }
-
 
     /**
      * Allow sub classes to fire {@link Lifecycle} events.
@@ -179,7 +174,9 @@ public abstract class LifecycleBase implements Lifecycle {
         }
 
         try {
+            // 观察者模式的事件消费
             setStateInternal(LifecycleState.STARTING_PREP, null, false);
+            // 真正的start逻辑
             startInternal();
             if (state.equals(LifecycleState.FAILED)) {
                 // This is a 'controlled' failure. The component put itself into the

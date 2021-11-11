@@ -249,6 +249,7 @@ public final class Bootstrap {
      */
     public void init() throws Exception {
 
+        // 初始化类加载器，commonLoader，catalinaLoader，sharedLoader
         initClassLoaders();
 
         Thread.currentThread().setContextClassLoader(catalinaLoader);
@@ -340,7 +341,7 @@ public final class Bootstrap {
         if (catalinaDaemon == null) {
             init();
         }
-
+        // 调用的 Catalina的start方法
         Method method = catalinaDaemon.getClass().getMethod("start", (Class [])null);
         method.invoke(catalinaDaemon, (Object [])null);
     }

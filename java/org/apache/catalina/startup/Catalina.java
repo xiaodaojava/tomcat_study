@@ -685,6 +685,7 @@ public class Catalina {
 
         // Start the new server
         try {
+            // 会调用到LifeCycleBase里面的start
             getServer().start();
         } catch (LifecycleException e) {
             log.fatal(sm.getString("catalina.serverStartFail"), e);
